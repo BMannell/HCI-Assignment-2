@@ -1,0 +1,78 @@
+<html>
+
+<head>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/humanity/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<script>
+		$(function(){
+			var slider = $("#slider").slider({
+				min: 0,
+				max: 1000
+			});
+			slider.on( "slidestop", function( event, ui ) {
+				if(ui.value < 900){
+					$(this).slider("value", 0);
+				}else{
+					window.location.href = "main.html"
+				}
+			});
+		});
+
+	</script>
+</head>
+
+<style>
+*{
+	font-family: Verdana;
+	cursor: pointer !important;
+}
+#machine{
+	margin: 0 auto;
+	width: 660px;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+#sign{
+	text-align:center;
+	border-bottom: 1px solid black;
+}
+
+#screen{
+	margin: 15px;
+	border: 1px solid black;
+	border-radius: 3px;
+	height: 540px;
+	background-color: lightblue;
+	padding: 15px;
+}
+</style>
+
+<style>
+#login-message{
+	text-align: center;
+}
+#slider-container{
+	padding: 60px;
+}
+#slider-container{
+	font-size:60px;
+}
+</style>
+
+<body>
+	<div id="machine">
+		<div id="sign">
+			<h1> ATM </h1>
+		</div>
+		<div id="screen">
+			<div id="login-message">
+				<h3>Slide to Login</h3>
+			</div>
+			<div id="slider-container">
+				<div id="slider"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html
