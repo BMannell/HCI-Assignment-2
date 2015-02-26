@@ -134,7 +134,7 @@
                 <div>
                     <div id="num-pad">
                         <div>
-                            <input value="" id="keypad-input" type="text" name="keypad-input" maxlength="4"></input>
+                            <input value="" id="keypad-input" type="password" name="keypad-input" maxlength="4"></input>
                         </div>
                         <table id="keypad-table">
                         <tr>
@@ -194,11 +194,14 @@
 
     <script>
         $(function(){
+            
+            var input = $('#keypad-input');
+            
             // Code for Keypad Button Password Entry
             $('.number-button').click(function () {
-                var insertText = $('#keypad-input').val() + $(this).attr('value');
+                var insertText = input.val() + $(this).attr('value');
                 if(insertText.length <= 4)
-                    $('#keypad-input').val(insertText);
+                    input.val(insertText);
                 
                 if(insertText.length == 4)
                 {
@@ -208,21 +211,25 @@
                     }
                     else
                     {
-                        
+                        input.css('background-color', 'red');
+                        setTimeout(function(){
+                            input.css('background-color', 'white');
+                            input.val('');
+                        }, 1000);
                     }
                 }
             });
 
             $('.clear-button').click(function () {
                 //used to be variable assignment here that went in val() below
-                $('#keypad-input').val('');
+                input.val('');
             });
 
             $('.del-button').click(function () {
                 //used to be variable assignment here that went in val() below
                 var str = $('#keypad-input').val();
                 str = str.substring(0,str.length-1);
-                $('#keypad-input').val(str);
+                input.val(str);
             });
 
 

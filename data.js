@@ -97,7 +97,7 @@ var Data = new function() {
 		var user = users.get('userId', userId);
 		if(user)
 		{
-			return user.accounts;
+			return { success: true, return: user.accounts };
 		}
 		else
 		{
