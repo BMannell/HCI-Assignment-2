@@ -4,6 +4,15 @@
         <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
         <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
         <script src="data.js"></script>
+        <script>
+        function prevPage() {
+            window.history.back();
+        }
+
+        function exit(){
+            window.location.href="login.html";
+        }
+        </script>
     </head>
 
     <style>
@@ -107,10 +116,10 @@
             </div>
             <div id="screen">
                 <div id="top-bar">
-                    <button id="back">
+                    <button id="back" onclick="prevPage()">
                         Back
                     </button>
-                    <button id="exit">
+                    <button id="exit" onclick="exit()">
                         Exit
                     </button>
                     <div id="account-name" >
