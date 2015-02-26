@@ -115,6 +115,10 @@
     </style>
 
     <body>
+        <div id="dialog-message" title="Warning">
+            <p id="text"></p>
+        </div>
+        
         <div id="machine">
             <div id="sign">
                 <h1> ATM </h1>
@@ -134,7 +138,7 @@
                 <div>
                     <div id="num-pad">
                         <div>
-                            <input value="" id="keypad-input" type="number" name="keypad-input" pattern="^\d+(?:,\d{3})*\.\d{2}$"></input>
+                            <input value="" id="keypad-input" type="text" name="keypad-input"></input>
                         </div>
                         <table id="keypad-table">
                         <tr>
@@ -215,10 +219,44 @@
 
             $('.ok-button').click(function () {
                 //call affirmative action
-                var amount = $('#keypad-input').val() * -1;
+                var amount = parseInt($('#keypad-input').val()) * -1;                
                 var accountId = localStorage.getItem('cur-accountId');
                 
-                Data.submitTransaction(1, accountId, amount);
+                if(amount % 5 == 0)
+                {
+                    var response = Data.submitTransaction(1, accountId, amount);
+                    
+                    if(response.success)
+                    {
+                        window.location.href = 'main.html';
+                    }
+                    else
+                    {
+                        $('#text').text(response.errormsg);
+                        $( "#dialog-message" ).dialog({
+                            modal: true,
+                            buttons: {
+                                Ok: function() {
+                                    $( this ).dialog( "close" );
+                                }
+                            }
+                        });
+                        $('#keypad-input').val('');
+                    }
+                }
+                else
+                {
+                    $('#text').text('You entered an invalid amount');
+                    $( "#dialog-message" ).dialog({
+                        modal: true,
+                        buttons: {
+                            Ok: function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    });
+                    $('#keypad-input').val('');
+                }              
             });
         });
     </script>
