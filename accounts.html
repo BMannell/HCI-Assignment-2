@@ -4,7 +4,7 @@
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/humanity/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-
+	<script src="data.js"></script>
 </head>
 
 <style>
@@ -89,6 +89,16 @@
 }
 </style>
 
+<style>
+#account-table{
+	margin: 50px auto 0px auto;
+	overflow:scroll;
+}
+#account-table td, #account-table th{
+	padding: 2px 7px;
+}
+</style>
+
 <body>
 	<div id="machine">
 		<div id="sign">
@@ -106,10 +116,25 @@
 					Yertle
 				</div>
 			</div>
-			<div id="account-list">
-				<div id="account">
+			<div id="accounts">
+				<table id="account-table">
+					<thead>
+						<tr>
+							<th>
+								Account No.
+							</th>
+							<th>
+								Account Name
+							</th>
+							<th>
+								Balance
+							</th>
+						</tr>
+					</thead>
+					<tbody id="account-list">
 
-				</div>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -124,6 +149,21 @@ $(function(){
 	$("#exit").click(function(){
 		window.location.href="login.html"
 	});
+	var acc = Data.getAccounts(1);
+	if(acc.success){
+		var accounts = acc.return;
+		var $tbody = $("#account-list");
+		$.each(accounts,function(index,value){
+			var $tr = $("<tr>");
+			$tr.append($("<td>").html(value.accountId));
+			$tr.append($("<td>").html(value.name));
+			$tr.append($("<td>").html(value.balance));
+			$tbody.append($tr);
+		});
+	}else{
+		var err = acc.errormsg;
+	}
+
 });
 </script>
 
