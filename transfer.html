@@ -65,6 +65,35 @@
 
 </style>
 
+<style>
+
+#transfer{
+	margin-top: 30px;
+}
+
+.account-list{
+	display: inline-block;
+	margin-left: 70px;
+}
+
+.account-list select{
+	font-size: 20px;
+}
+
+.account-info{
+	display: inline-block;
+	padding: 30px;
+	width: 95px;
+}
+#input{
+	margin-top: 30px;
+	text-align: center;
+}
+#input input{
+	font-size: 30px;
+}
+</style>
+
 <body>
 	<div id="machine">
 		<div id="sign">
@@ -79,11 +108,48 @@
 					Exit
 				</button>
 				<div id="account-name" >
-					Yertle
+					Transfer
 				</div>
 			</div>
-			
+			<div id="transfer">
+
+				<div id="account-select">
+					<div id="account-list-1" class="account-list">
+						From:
+						<select></select>
+						<p id="balance-1"></p>
+					</div>
+					<div id="account-list-2" class="account-list">
+						To:
+						<select></select>
+						<p id="balance-2"></p>
+					</div>
+				</div>
+				<div id="input">
+					<input type="text">
+
+				</div>
+				<div id="submit">
+					<button> Submit </button>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
+<script>
+$(function(){
+	var acc = Data.getAccounts(1);
+	if(acc.success){
+		var accounts = acc.return;
+		var $accountList = $("#account-list-1 select");
+		var $accountList2 = $("#account-list-2 select");
+		$.each(accounts,function(index,value){
+			$accountList.append($("<option>",{class: "account-info", value: value.accountId}).html(value.name));
+			$accountList2.append($("<option>",{class: "account-info", value: value.accountId}).html(value.name));
+		});
+	}else{
+		var err = acc.errormsg;
+	}
+});
+</script>
 </html>
