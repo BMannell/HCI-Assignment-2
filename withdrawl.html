@@ -109,4 +109,14 @@
             </div>
         </div>
     </body>
+    
+    <script>
+        $(function(){
+            var audio = new Audio('beep.mp3');
+            
+            $('button').click(function(){
+                audio.play();
+            });
+        });
+    </script>
 </html>

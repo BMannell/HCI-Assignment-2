@@ -236,8 +236,16 @@
         var numBills100 = 0;
         
         $(function(){
+            
+            var audio = new Audio('beep.mp3');
+            audio.playbackRate = 3;
+            
+            $('button').click(function(){
+                audio.play();
+            });
+            
             $('#keypad-input').val(sum);
-            $('.money-button').html(0);    
+            $('.money-button').html(0);
 
             // Code for Plus Button Entry
             $('.plus-button').click(function () {

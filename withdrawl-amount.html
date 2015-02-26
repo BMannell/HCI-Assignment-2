@@ -198,6 +198,14 @@
 
     <script>
         $(function(){
+            
+            var audio = new Audio('beep.mp3');
+            audio.playbackRate = 3;
+            
+            $('button').click(function(){
+                audio.play();
+            });
+            
             // Code for Keypad Button Entry
             $('.number-button').click(function () {
                 var insertText = $('#keypad-input').val() + $(this).attr('value');
