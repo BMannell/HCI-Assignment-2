@@ -15,12 +15,16 @@
 	}
 	
 	function nextItem(){
-		if($('#keypad-input').val() & $('#deposit-type').val() != ''){
-			alert("'"+$('#keypad-input').val()+"'");
-			alert("'"+$('#deposit-type').val()+"'");
-			window.location.reload();			
+	
+		// if input not invalid
+		if($('#keypad-input').val()!='' && $('#keypad-input').val() > 0 && $('#deposit-type').val() != ''){
+			
+			window.location.reload(); // "next item"			
 		}
-		else{
+		else{ // if invalid input
+			
+			
+			// pop up modal (borrowed from jQuery site example source)
 			$(function() {
 				$( "#dialog-message" ).dialog({
 				  modal: true,
@@ -34,14 +38,17 @@
 		}
 	}
 	
-	/*function done(){
-		if($('#keypad-input').val() | $('#deposit-type').val() != ''){
-			// proceed to next screen
+	function done(){
+		// if valid input
+		if($('#keypad-input').val()!='' && $('#keypad-input').val() > 0 && $('#deposit-type').val() != ''){
+			// take info proceed to next screen with info
 		}
-		else{
+		else{ // if invalid input
 			// proceed to next screen
+			// confirm asking to discard invalid info and move on
+			
 		}
-	}*/
+	}
 	
 	
 	</script>
@@ -118,6 +125,19 @@
             display: block;
         }
         
+		.greyed{
+			color: #aaa;
+		}
+		
+		#deposit-type {
+            width: 532px;
+            height: 60px;
+            margin: 15 auto;
+            display: block;
+            font-size: 20px;
+            text-align: center;
+        }
+		
         /* num pad styling */
         
         #keypad-input {
@@ -128,6 +148,7 @@
             font-size: 20px;
             direction: rtl;
         }
+		
         
         #keypad-table {
             margin-left: auto;
@@ -135,8 +156,8 @@
         }
         
         #keypad-table .keypad-button {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             font-size: 20px;
         }
         
@@ -157,7 +178,7 @@
 		<div id="screen">
                 <div id="top-bar">
                     <button id="back" onclick="prevPage()">
-                        Back
+                        Cancel
                     </button>
                     <button id="exit" onclick="exit()">
                         Exit
@@ -167,9 +188,9 @@
                     </div>
                 </div>
                 <div>
-					<div>deposit Type: 
+					<div> 
 						<select id="deposit-type">
-							<option value="">--select type--</option>
+							<option value="" class="greyed">--deposit type--</option>
 							<option value="cash">Cash</option>
 							<option value="cheque">Cheque</option>
 						</select>
@@ -239,10 +260,10 @@
 	
 	
 	
-	
+	<!-- built from jQuery UI dialog example source -->
 	<div id="dialog-message" title="Warning">
 	  <p>
-		No deposit amount and/or type given.
+		No <b>deposit amount</b> and/or <b>deposit type</b> given.
 	  </p>
 	</div>
 </body>
