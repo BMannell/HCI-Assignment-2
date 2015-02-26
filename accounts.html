@@ -38,7 +38,7 @@
 	line-height: 30px;
 	margin-bottom: 5px;
 	text-align: center;
-		font-size: 20px;
+	font-size: 20px;
 }
 
 #back{
@@ -66,6 +66,27 @@
 	margin: 10px;
 	font-size: 20px;
 }
+
+#top-bar{
+	line-height: 30px;
+	margin-bottom: 5px;
+	text-align: center;
+	font-size: 20px;
+}
+
+#back{
+	line-height: inherit;
+	padding: 0px 5px;
+	float: left;
+	display: inline-block;
+}
+
+#exit{
+	line-height: inherit;
+	padding: 0px 5px;
+	float: right;
+	display: inline-block;
+}
 </style>
 
 <body>
@@ -81,25 +102,29 @@
 				<button id="exit">
 					Exit
 				</button>
-				<div id="account-name">
+				<div id="account-name" >
 					Yertle
 				</div>
 			</div>
-			<div id="main-menu">
-				<button class="option" onclick="window.location.href='deposit.html'">
-					Deposit
-				</button>
-				<button class="option" onclick="window.location.href='withdrawl.html'">
-					Withdrawl
-				</button>
-				<button class="option" onclick="window.location.href='transfer.html''">
-					Transfer
-				</button>
-				<button class="option" onclick="window.location.href='accounts.html'">
-					Accounts
-				</button>
+			<div id="account-list">
+				<div id="account">
+
+				</div>
 			</div>
 		</div>
 	</div>
 </body>
+
+<script>
+$(function(){
+	$("#back").click(function(){
+		window.history.back()
+	});
+
+	$("#exit").click(function(){
+		window.location.href="login.html"
+	});
+});
+</script>
+
 </html>

@@ -4,10 +4,19 @@
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/humanity/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<script>
+	function prevPage() {
+		window.history.back();
+	}
 
+	function exit(){
+		window.location.href="login.html";
+	}
+	</script>
 </head>
 
 <style>
+
 *{
 	font-family: Verdana;
 	cursor: pointer !important;
@@ -31,9 +40,7 @@
 	background-color: lightblue;
 	padding: 15px;
 }
-</style>
 
-<style>
 #top-bar{
 	line-height: 30px;
 	margin-bottom: 5px;
@@ -55,17 +62,6 @@
 	display: inline-block;
 }
 
-#main-menu{
-	text-align: center;
-	margin-top: 40px;
-}
-.option{
-	display:inline-block;
-	height: 200px;
-	width: 200px;
-	margin: 10px;
-	font-size: 20px;
-}
 </style>
 
 <body>
@@ -75,29 +71,15 @@
 		</div>
 		<div id="screen">
 			<div id="top-bar">
-				<button id="back">
+				<button id="back" onclick="prevPage()">
 					Back
 				</button>
-				<button id="exit">
+				<button id="exit" onclick="exit()">
 					Exit
 				</button>
-				<div id="account-name">
+				<div id="account-name" >
 					Yertle
 				</div>
-			</div>
-			<div id="main-menu">
-				<button class="option" onclick="window.location.href='deposit.html'">
-					Deposit
-				</button>
-				<button class="option" onclick="window.location.href='withdrawl.html'">
-					Withdrawl
-				</button>
-				<button class="option" onclick="window.location.href='transfer.html''">
-					Transfer
-				</button>
-				<button class="option" onclick="window.location.href='accounts.html'">
-					Accounts
-				</button>
 			</div>
 		</div>
 	</div>
