@@ -4,6 +4,8 @@
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/humanity/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
         <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <script src="data.js"></script>
+        
         <script>
         function prevPage() {
             window.history.back();
@@ -126,13 +128,13 @@
                         Exit
                     </button>
                     <div id="account-name" >
-                        Withdraw
+                        Please enter pin
                     </div>
                 </div>
                 <div>
                     <div id="num-pad">
                         <div>
-                            <input value="" id="keypad-input" type="number" name="keypad-input" pattern="^\d+(?:,\d{3})*\.\d{2}$"></input>
+                            <input value="" id="keypad-input" type="text" name="keypad-input" maxlength="4"></input>
                         </div>
                         <table id="keypad-table">
                         <tr>
@@ -192,10 +194,25 @@
 
     <script>
         $(function(){
-            // Code for Keypad Button Entry
+            // Code for Keypad Button Password Entry
             $('.number-button').click(function () {
                 var insertText = $('#keypad-input').val() + $(this).attr('value');
-                $('#keypad-input').val(insertText);
+                if(insertText.length <= 4)
+                    $('#keypad-input').val(insertText);
+                
+                if(insertText.length == 4)
+                {
+                    console.log('checking pint');
+                    if(Data.checkPin(1, insertText))
+                    {
+                        console.log('equal!');
+                        window.location.href="main.html";
+                    }
+                    else
+                    {
+                        
+                    }
+                }
             });
 
             $('.clear-button').click(function () {

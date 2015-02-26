@@ -79,6 +79,56 @@
             margin-right: auto;
             display: block;
         }
+        
+        /* billz styles */
+        
+        .minus-button, .plus-button {
+            margin:0 20px;
+            width: 70px;
+            height: 70px;
+            font-size: 20px;
+        }
+        
+        .money-button {
+            width: 114px;
+            height: 56px;
+            color:black;
+            background-size:contain;
+            background-repeat:no-repeat;
+            border: none;
+            background-color: rgba(0,0,0,0);
+            font-size: 20px;
+        }
+        
+        #num-pad {
+            position: relative;
+        }
+        
+        #keypad-input {
+            width: 532px;
+            height: 60px;
+            margin: 15 auto;
+            display: block;
+            font-size: 20px;
+            direction: rtl;
+            padding: 10px;
+        }
+        
+        #keypad-table {
+            margin-left: 5px;   
+        }
+        
+        .clear-button,
+        .ok-button {
+            width: 175px;
+            height: 75px;
+        }
+        
+        #buttons {
+            position: absolute;
+            top: 382px;
+            left: 212px;   
+        }
 
     </style>
 
@@ -96,68 +146,77 @@
                         Exit
                     </button>
                     <div id="account-name" >
-                        Yertle
+                        Bills
                     </div>
                 </div>
                 <div>
-                    <div id="button-wrapper">
-                        <button id="button-amount" class="button">By Amount</button>
-                        <button id="button-bills" class="button">By Bill$</button>
-                    </div>
                     <div id="num-pad">
                         <div>
                             <input value="" id="keypad-input" type="text" name="keypad-input"></input>
                         </div>
-                        <table id="keypad-table" style="border:1px solid black;">
-                        <tr>
-                            <td>
-                                <button type="button" class="number-button keypad-button" value="1">1</button>
-                            </td>
-                            <td>
-                                <button type="button" class="number-button keypad-button" value="2">2</button>
-                            </td>
-                            <td>
-                                <button type="button" class="number-button keypad-button" value="3">3</button>
-                            </td>
-                            <td colspan="1" style="">
-                                <button type="button" class="clear-button keypad-button">CLEAR</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button type="button" class="number-button keypad-button" value="4">4</button>
-                            </td>
-                            <td>
-                                <button type="button" class="number-button keypad-button" value="5">5</button>
-                            </td>
-                            <td>
-                                <button type="button" class="number-button keypad-button" value="6">6</button>
-                            </td>
-                            <td colspan="1" style="">
-                                <button type="button" class="del-button keypad-button">DEL</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <button type="button" class="number-button keypad-button" value="7">7</button>
-                            </td>
-                            <td>
-                                <button type="button" class="number-button keypad-button" value="8">8</button>
-                            </td>
-                            <td>
-                                <button type="button" class="number-button keypad-button" value="9">9</button>
-                            </td>
-                            <td colspan="1" style="">
-                                <button type="button" class="ok-button keypad-button">OK</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>
-                                <button type="button" class="number-button keypad-button" value="0">0</button>
-                            </td>
-                        </tr>
-                    </table>
+                        <table id="keypad-table">
+                            <tr>
+                                <td>
+                                    <button type="button" class="plus-button keypad-button" value="5">+</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="plus-button keypad-button" value="10">+</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="plus-button keypad-button" value="20">+</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="plus-button keypad-button" value="50">+</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="plus-button keypad-button" value="100">+</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button" class="money-button keypad-button" style="background-image:url('http://www.vancouver.hm/webimages/5back.gif');" value="5" disabled></button>
+                                </td>
+                                <td>
+                                    <button type="button" class="money-button keypad-button" style="background-image:url('http://www.vancouver.hm/webimages/10back.gif');" value="10" disabled></button>
+                                </td>
+                                <td>
+                                    <button type="button" class="money-button keypad-button" style="background-image:url('http://www.vancouver.hm/webimages/new20back.gif');" value="20" disabled></button>
+                                </td>
+                                <td>
+                                    <button type="button" class="money-button keypad-button" style="background-image:url('http://www.vancouver.hm/webimages/50newback.gif');" value="50" disabled></button>
+                                </td>
+                                <td>
+                                    <button type="button" class="money-button keypad-button" style="background-image:url('http://www.vancouver.hm/webimages/new100back.gif');" value="100" disabled></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button" class="minus-button keypad-button" value="5">-</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="minus-button keypad-button" value="10">-</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="minus-button keypad-button" value="20">-</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="minus-button keypad-button" value="50">-</button>
+                                </td>
+                                <td>
+                                    <button type="button" class="minus-button keypad-button" value="100">-</button>
+                                </td>
+                            </tr>
+                        </table>
+                        <table id="buttons">
+                            <tr>
+                                <td colspan="1" style="">
+                                    <button type="button" class="clear-button keypad-button">CLEAR</button>
+                                </td>
+                                <td colspan="1" style="">
+                                    <button type="button" class="ok-button keypad-button">OK</button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -165,8 +224,76 @@
     </body>
 
     <script>
+        
+        var sum = 0;
+
+        var numBills5 = 0;
+        var numBills10 = 0;
+        var numBills20 = 0;
+        var numBills50 = 0;
+        var numBills100 = 0;
+        
         $(function(){
-            $('#num-pad').hide();
+            $('#keypad-input').val(sum);
+            $('.money-button').html(0);    
+
+            // Code for Plus Button Entry
+            $('.plus-button').click(function () {
+
+                sum = sum + parseInt($(this).val());
+
+                // update bill number
+                eval('numBills'+$(this).val()+'++;');
+
+                // update bill number on the money picture
+                eval("$('.money-button[value=\""+$(this).val()+"\"]').html(numBills"+$(this).val()+");");
+
+                // update the onscreen money total
+                $('#keypad-input').val(sum);
+            });
+
+            // Code for Minus Button Entry
+            $('.minus-button').click(function () {
+
+                // reduce the sum by the bill mount, min value = 0 (no negative)
+                eval("if(numBills"+$(this).val()+">0){sum = Math.max(sum - parseInt($(this).val()), 0);}");
+
+                //eval("if(numBills"+$(this).val()+"){"
+
+                // update bill number
+                eval('numBills'+$(this).val()+'= Math.max(numBills'+$(this).val()+'-1,0);');
+
+                // update bill number on the money picture
+                eval("$('.money-button[value=\""+$(this).val()+"\"]').html(numBills"+$(this).val()+");");
+
+                // update the onscreen money total
+                $('#keypad-input').val(sum);
+            });
+
+            // Code for the clear button
+            $('.clear-button').click(function () {
+                //used to be variable assignment here that went in val() below
+                $('#keypad-input').val(0);
+                $('.money-button').html(0);
+                sum = 0;
+
+                numBills5 = 0;
+                numBills10 = 0;
+                numBills20 = 0;
+                numBills50 = 0;
+                numBills100 = 0;
+            });
+
+            $('.del-button').click(function () {
+                //used to be variable assignment here that went in val() below
+                var str = $('#keypad-input').val();
+                str = str.substring(0, str.length - 1);
+                $('#keypad-input').val(str);
+            });
+
+            $('.ok-button').click(function () {
+                //call affirmative action
+            });
         });
     </script>
 </html>

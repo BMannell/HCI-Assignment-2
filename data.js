@@ -110,6 +110,12 @@ var Data = new function() {
 		createDefaultUser();
 		saveData();
 	}
+    
+    this.checkPin = function(userId, pin)
+    {
+        var user = users.get('userId', userId);
+        return user.pin == pin;
+    }
 	
 	/* Private functions */
 	
@@ -134,7 +140,7 @@ var Data = new function() {
 		users = [
 			{
 				userId: 1,
-				pin: 123,
+				pin: 1234,
 				firstName: 'John',
 				lastName: 'Tamminga',
 				accounts: [
