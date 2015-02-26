@@ -155,7 +155,7 @@ $(function(){
 		var $tbody = $("#account-list");
 		$.each(accounts,function(index,value){
 			var $tr = $("<tr>");
-			$tr.append($("<td>").html(value.accountId));
+			$tr.append($("<td>", {style:"text-align: center"}).html(value.accountId));
 			$tr.append($("<td>").html(value.name));
 			$tr.append($("<td>").html(value.balance));
 			$tbody.append($tr);
