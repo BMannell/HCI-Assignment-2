@@ -97,7 +97,7 @@ var Data = new function() {
 		var user = users.get('userId', userId);
 		if(user)
 		{
-			return { success: true, return: user.accounts };
+			return user.accounts;
 		}
 		else
 		{
@@ -175,7 +175,7 @@ var Data = new function() {
 Array.prototype.get = function(attr, val) {
 
 	for(var i = 0; i < this.length; i++) {
-		if(this[i][attr] === val) {
+		if(this[i][attr] == val) {
 			return this[i];
 		}
 	}
