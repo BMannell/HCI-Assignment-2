@@ -1,6 +1,5 @@
-<script>
 	$(function(){
-		// Code for Keypad Button Password Entry
+		// Code for Keypad Button Entry
 		$('.number-button').click(function () {
 			var insertText = $('#keypad-input').val() + $(this).attr('value');
 			$('#keypad-input').val(insertText);
@@ -24,4 +23,3 @@
 
 		});
 	});
-</script>
