@@ -13,7 +13,44 @@
 	function exit(){
 		window.location.href="login.html";
 	}
+	
+	function nextItem(){
+		if($('#keypad-input').val() & $('#deposit-type').val() != ''){
+			alert("'"+$('#keypad-input').val()+"'");
+			alert("'"+$('#deposit-type').val()+"'");
+			window.location.reload();			
+		}
+		else{
+			$(function() {
+				$( "#dialog-message" ).dialog({
+				  modal: true,
+				  buttons: {
+					Ok: function() {
+					  $( this ).dialog( "close" );
+					}
+				  }
+				});
+			  });
+		}
+	}
+	
+	/*function done(){
+		if($('#keypad-input').val() | $('#deposit-type').val() != ''){
+			// proceed to next screen
+		}
+		else{
+			// proceed to next screen
+		}
+	}*/
+	
+	
 	</script>
+	
+	
+	<script>
+	  
+  </script>
+	
 </head>
 
 <style>
@@ -118,75 +155,124 @@
 			<h1> ATM </h1>
 		</div>
 		<div id="screen">
-			<div id="top-bar">
-				<button id="back" onclick="prevPage()">
-					Back
-				</button>
-				<button id="exit" onclick="exit()">
-					Exit
-				</button>
-				<div id="account-name" >
-					Withdraw
-				</div>
-			</div>
-			<div>
-				<div id="num-pad">
-					<div>
-						<input value="" id="keypad-input" type="text" name="keypad-input"></input>
+                <div id="top-bar">
+                    <button id="back" onclick="prevPage()">
+                        Back
+                    </button>
+                    <button id="exit" onclick="exit()">
+                        Exit
+                    </button>
+                    <div id="account-name" >
+                        Deposit Item
+                    </div>
+                </div>
+                <div>
+					<div>deposit Type: 
+						<select id="deposit-type">
+							<option value="">--select type--</option>
+							<option value="cash">Cash</option>
+							<option value="cheque">Cheque</option>
+						</select>
 					</div>
-					<table id="keypad-table">
-					<tr>
-						<td>
-							<button type="button" class="number-button keypad-button" value="1">1</button>
-						</td>
-						<td>
-							<button type="button" class="number-button keypad-button" value="2">2</button>
-						</td>
-						<td>
-							<button type="button" class="number-button keypad-button" value="3">3</button>
-						</td>
-						<td colspan="1" style="">
-							<button type="button" class="clear-button keypad-button">CLEAR</button>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<button type="button" class="number-button keypad-button" value="4">4</button>
-						</td>
-						<td>
-							<button type="button" class="number-button keypad-button" value="5">5</button>
-						</td>
-						<td>
-							<button type="button" class="number-button keypad-button" value="6">6</button>
-						</td>
-						<td colspan="1" style="">
-							<button type="button" class="del-button keypad-button">DEL</button>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<button type="button" class="number-button keypad-button" value="7">7</button>
-						</td>
-						<td>
-							<button type="button" class="number-button keypad-button" value="8">8</button>
-						</td>
-						<td>
-							<button type="button" class="number-button keypad-button" value="9">9</button>
-						</td>
-						<td colspan="1" style="">
-							<button type="button" class="ok-button keypad-button">OK</button>
-						</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>
-							<button type="button" class="number-button keypad-button" value="0">0</button>
-						</td>
-					</tr>
-				</table>
-				</div>
-			</div>
-		</div>
+                    <div id="num-pad">
+                        <div>
+                            <input value="" id="keypad-input" type="text" name="keypad-input"></input>
+                        </div>
+                        <table id="keypad-table">
+                        <tr>
+                            <td>
+                                <button type="button" class="number-button keypad-button" value="1">1</button>
+                            </td>
+                            <td>
+                                <button type="button" class="number-button keypad-button" value="2">2</button>
+                            </td>
+                            <td>
+                                <button type="button" class="number-button keypad-button" value="3">3</button>
+                            </td>
+                            <td colspan="1" style="">
+                                <button type="button" class="clear-button keypad-button">CLEAR</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="number-button keypad-button" value="4">4</button>
+                            </td>
+                            <td>
+                                <button type="button" class="number-button keypad-button" value="5">5</button>
+                            </td>
+                            <td>
+                                <button type="button" class="number-button keypad-button" value="6">6</button>
+                            </td>
+                            <td colspan="1" style="">
+                                <button type="button" class="del-button keypad-button">DEL</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="number-button keypad-button" value="7">7</button>
+                            </td>
+                            <td>
+                                <button type="button" class="number-button keypad-button" value="8">8</button>
+                            </td>
+                            <td>
+                                <button type="button" class="number-button keypad-button" value="9">9</button>
+                            </td>
+                            <td colspan="1" style="">
+                                <button type="button" class="ok-button keypad-button" onclick="nextItem()">Next Item</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <button type="button" class="number-button keypad-button" value="0">0</button>
+                            </td>
+							<td></td>
+							<td colspan="1" style="">
+                                <button type="button" class="ok-button keypad-button">Done</button>
+                            </td>
+                        </tr>
+                    </table>
+                    </div>
+                </div>
+            </div>
+	</div>
+	
+	
+	
+	
+	<div id="dialog-message" title="Warning">
+	  <p>
+		No deposit amount and/or type given.
+	  </p>
 	</div>
 </body>
+
+<script>
+	$(function(){
+		// Code for Keypad Button Entry
+		$('.number-button').click(function () {
+			var insertText = $('#keypad-input').val() + $(this).attr('value');
+			$('#keypad-input').val(insertText);
+		});
+
+		$('.clear-button').click(function () {
+			//used to be variable assignment here that went in val() below
+			$('#keypad-input').val('');
+		});
+
+		$('.del-button').click(function () {
+			//used to be variable assignment here that went in val() below
+			var str = $('#keypad-input').val();
+			str = str.substring(0,str.length-1);
+			$('#keypad-input').val(str);
+		});
+
+
+		$('.ok-button').click(function () {
+			//call affirmative action
+
+		});
+	});
+</script>
+
 </html>
