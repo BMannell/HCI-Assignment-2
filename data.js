@@ -22,6 +22,12 @@ var Data = new function() {
 			console.log('default user created');
 		}
 	}
+    
+    this.clearTransactions = function()
+    {
+        users[0].tansactions = [];
+        saveData();
+    }
 
 	this.submitTransaction = function(userId, accountId, amount)
 	{
@@ -158,16 +164,7 @@ var Data = new function() {
 					}
 				],
 				tansactions: [
-					{ 
-						accountId: 1,
-						amount: 5000,
-						date: 1424906745502
-					},
-					{
-						accountId: 1,
-						amount: 5000,
-						date: 1424907002374
-					}
+
 				]
 			}
 		];

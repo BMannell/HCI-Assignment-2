@@ -10,7 +10,9 @@
         }
 
         function exit(){
-            window.location.href="finish.html";
+            window.location.href="login.html";
+            
+            Data.clearTransactions();
         }
         </script>
     </head>
@@ -38,6 +40,7 @@
             height: 540px;
             background-color: lightblue;
             padding: 15px;
+            position: relative;
         }
 
         #top-bar{
@@ -106,6 +109,16 @@
         
         #accounts {
             margin-top: 50px;
+            margin-left: 75px;
+        }
+        
+        #print {
+            width: 400px;
+            height: 100px;
+            position: absolute;
+            top: 454px;
+            left: 114px;
+            font-size: 20px;
         }
 
     </style>
@@ -120,40 +133,48 @@
                     <button id="back" onclick="prevPage()">
                         Back
                     </button>
-                    <button id="exit" onclick="exit()">
-                        Exit
-                    </button>
-                    <div id="account-name" >
-                        Select Account
+                    <div id="account-name">
+                        Thank you
                     </div>
                 </div>
                 <div id="accounts">
-                    
+                    <p>Tansactions</p>
+                    <table id="table-transactions">
+                        <thead>
+                            <th style="width: 160px;text-align: left;">Account</th>
+                            <th>Amount</th>
+                        </thead>
+                        <tbody>
+                        
+                        </tbody>
+                    </table>
                 </div>
+                <button id="print" onclick="exit()">Print & Exit</button>
             </div>
         </div>
     </body>
 
     <script>
         $(function(){
-
-            var accounts = Data.getAccounts(1).return;
+            var transactions = Data.getUsers()[0].tansactions;
             
-            var buttons = '';
-            accounts.forEach(function(acc){
-                buttons += '<button val="' + acc.accountId + '" class="account-button" onclick="buttonClick(' +
-                     acc.accountId + ')">' + acc.name + '</button>';
+            var table = '';
+            transactions.forEach(function(trans){
+                table += '<tr><td>' + getName(trans.accountId) + '</td><td>' + trans.amount + '</td></tr>';
+                console.log(trans.accountId);
             });
-
-            $('#accounts').html(buttons);
-        });
-        
-        function buttonClick(accountId)
-        {
-            localStorage.setItem('cur-accountId', accountId);
             
-            //go to the page you need
-            window.location.href="withdrawl.html";
-        }
+            $('#table-transactions tbody').html(table);
+            
+            function getName(accountId)
+            {
+                var accounts = Data.getAccounts(1).return;
+                for(var i = 0; i < accounts.length; i++)
+                {
+                    if(accounts[i].accountId == accountId)
+                        return accounts[i].name;
+                }
+            }
+        });
     </script>
 </html>

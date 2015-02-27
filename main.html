@@ -4,7 +4,8 @@
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.3/themes/humanity/jquery-ui.css">
 	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-
+    <script src="data.js"></script>
+    
 </head>
 
 <style>
@@ -66,6 +67,9 @@
 	margin: 10px;
 	font-size: 20px;
 }
+#exit {
+    background-color: rgb(81, 215, 81);
+}
 </style>
 
 <body>
@@ -79,10 +83,10 @@
 					Back
 				</button>
 				<button id="exit">
-					Exit
+					Finish
 				</button>
 				<div id="account-name">
-					Yertle
+					Welcome
 				</div>
 			</div>
 			<div id="main-menu">
@@ -90,13 +94,13 @@
 					Deposit
 				</button>
 				<button class="option" onclick="window.location.href='account-selection-withdrawl.html'">
-					Withdrawl
+					Withdraw
 				</button>
 				<button class="option" onclick="window.location.href='transfer.html'">
 					Transfer
 				</button>
 				<button class="option" onclick="window.location.href='accounts.html'">
-					Accounts
+					Account Balances
 				</button>
 			</div>
 		</div>
@@ -104,12 +108,15 @@
 </body>
 <script>
 $(function(){
+    
+    $('#account-name').text(Data.getUsers()[0].firstName);
+    
 	$("#back").click(function(){
 		window.history.back()
 	});
 
 	$("#exit").click(function(){
-		window.location.href="login.html"
+		window.location.href="finish.html"
 	});
 });
 </script>

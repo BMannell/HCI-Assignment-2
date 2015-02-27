@@ -11,7 +11,7 @@
 	}
 
 	function exit(){
-		window.location.href="login.html";
+		window.location.href="finish.html";
 	}
 	
 	function nextItem(){
@@ -21,10 +21,8 @@
 		
 			var format = new RegExp('[0-9]+[\.\d\d]?');
 			if(format.test($('#keypad-input').val())){ // if it matches
-				// submit transaction
-							alert('valid');
 
-				Data.submitTransaction(1,localStorage.getItem('cur-accountId'),$('#keypad-input').val());
+				Data.submitTransaction(1,localStorage.getItem('cur-accountId'),parseFloat($('#keypad-input').val()));
 				window.location.reload(); // "next item"
 			}
 			else{
@@ -67,11 +65,9 @@
 		var format = new RegExp('[0-9]+[\.\d\d]?');
 		if($('#keypad-input').val()!='' && parseInt($('#keypad-input').val()) > 0 && $('#deposit-type').val() != ''){
 			// take info proceed to next screen with info
-			alert('valid');
 			if(format.test($('#keypad-input').val())){
 				// submit transaction
-				Data.submitTransaction(1,localStorage.getItem('cur-accountId'),$('#keypad-input').val());
-				alert('submitted');
+				Data.submitTransaction(1,localStorage.getItem('cur-accountId'),parseFloat($('#keypad-input').val()));
 				window.location.href="main.html";
 			}
 			else{
