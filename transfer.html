@@ -242,9 +242,9 @@ $(function(){
 
             $('.ok-button').click(function () {
                 //call affirmative action
-                var amount = parseInt($('#keypad-input').val()) * -1;                
-                var to = $accountList.val();
-                var from = $accountList2.val();
+                var amount = parseInt($('#keypad-input').val());                
+                var from = $accountList.val();
+                var to = $accountList2.val();
                     var response = Data.submitTransfer(1, from, to, amount);
                     
                     if(response.success)
