@@ -61,7 +61,7 @@ var Data = new function() {
 		{
 			var accountFrom = user.accounts.get('accountId', accountIdFrom);
 			var accountTo = user.accounts.get('accountId', accountIdTo);
-			
+
 			if(accountFrom && accountTo)
 			{
 				if(accountFrom.balance - amount >= 0)
@@ -74,6 +74,8 @@ var Data = new function() {
 					
 					saveData();
 					return { success: true };
+				}else{
+					return { success: false, errormsg: 'Insufficient funds.' }
 				}
 			}
 			else
