@@ -114,6 +114,8 @@
             font-size: 20px;
             direction: rtl;
             padding: 10px;
+            background-color: white;
+            color: black;
         }
         
         #keypad-table {
@@ -135,6 +137,9 @@
     </style>
 
     <body>
+        <div id="dialog-message" title="Warning">
+            <p id="text"></p>
+        </div>
         <div id="machine">
             <div id="sign">
                 <h1> ATM </h1>
@@ -154,7 +159,7 @@
                 <div>
                     <div id="num-pad">
                         <div>
-                            <input value="" id="keypad-input" type="text" name="keypad-input"></input>
+                            <input value="" id="keypad-input" type="text" name="keypad-input" disabled></input>
                         </div>
                         <table id="keypad-table">
                             <tr>
@@ -306,7 +311,24 @@
                 var amount = $('#keypad-input').val() * -1;
                 var accountId = localStorage.getItem('cur-accountId');
                 
-                Data.submitTransaction(1, accountId, amount);
+                var response = Data.submitTransaction(1, accountId, amount);
+                if(response.success)
+                {
+                    window.location.href = 'main.html';
+                }
+                else
+                {
+                    $('#text').text(response.errormsg);
+                    $( "#dialog-message" ).dialog({
+                        modal: true,
+                        buttons: {
+                            Ok: function() {
+                                $( this ).dialog( "close" );
+                            }
+                        }
+                    });
+                    $('#keypad-input').val('');   
+                }
             });
         });
     </script>
