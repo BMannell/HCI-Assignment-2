@@ -18,35 +18,98 @@
 	
 		// if input not invalid
 		if($('#keypad-input').val()!='' && $('#keypad-input').val() > 0 && $('#deposit-type').val() != ''){
+		
+			var format = new RegExp('[0-9]+[\.\d\d]?');
+			if(format.test($('#keypad-input').val())){ // if it matches
+				// submit transaction
+							alert('valid');
+
+				Data.submitTransaction(1,localStorage.getItem('cur-accountId'),$('#keypad-input').val());
+				window.location.reload(); // "next item"
+			}
+			else{
+				// pop up modal (borrowed from jQuery site example source)
+				$(function() {
+					$( "#dialog-message" ).dialog({
+					  modal: true,
+					  buttons: {
+						Ok: function() {
+						  $( this ).dialog( "close" );
+						}
+					  }
+					});
+				  });
+
+			}
 			
-			window.location.reload(); // "next item"			
+			
 		}
 		else{ // if invalid input
-			
-			
 			// pop up modal (borrowed from jQuery site example source)
+				$(function() {
+					$( "#dialog-message" ).dialog({
+					  modal: true,
+					  buttons: {
+						Ok: function() {
+						  $( this ).dialog( "close" );
+						}
+					  }
+					});
+				  });
+			
+			
+		}
+	}
+	
+	function done(){
+		
+		// if valid input
+		var format = new RegExp('[0-9]+[\.\d\d]?');
+		if($('#keypad-input').val()!='' && parseInt($('#keypad-input').val()) > 0 && $('#deposit-type').val() != ''){
+			// take info proceed to next screen with info
+			alert('valid');
+			if(format.test($('#keypad-input').val())){
+				// submit transaction
+				Data.submitTransaction(1,localStorage.getItem('cur-accountId'),$('#keypad-input').val());
+				alert('submitted');
+				window.location.href="main.html";
+			}
+			else{
+				$(function() {
+					$( "#dialog-confirm" ).dialog({
+					  resizable: false,
+					  height:140,
+					  modal: true,
+					  buttons: {
+						"Delete all items": function() {
+						  $( this ).dialog( "close" );
+						},
+						Cancel: function() {
+						  $( this ).dialog( "close" );
+						}
+					  }
+					});
+				  });
+			}
+		}
+		else{ // if invalid input
+			// proceed to next screen
+			// confirm asking to discard invalid info and move on
 			$(function() {
-				$( "#dialog-message" ).dialog({
+				$( "#dialog-confirm" ).dialog({
+				  resizable: false,
+				  height:140,
 				  modal: true,
 				  buttons: {
-					Ok: function() {
+					"Delete all items": function() {
+					  $( this ).dialog( "close" );
+					},
+					Cancel: function() {
 					  $( this ).dialog( "close" );
 					}
 				  }
 				});
 			  });
-		}
-	}
-	
-	function done(){
-		// if valid input
-		if($('#keypad-input').val()!='' && $('#keypad-input').val() > 0 && $('#deposit-type').val() != ''){
-			// take info proceed to next screen with info
-		}
-		else{ // if invalid input
-			// proceed to next screen
-			// confirm asking to discard invalid info and move on
-			
 		}
 	}
 	
@@ -146,7 +209,7 @@
             margin: 15 auto;
             display: block;
             font-size: 20px;
-            direction: rtl;
+            text-align: right;
         }
 		
         
@@ -239,17 +302,19 @@
                                 <button type="button" class="number-button keypad-button" value="9">9</button>
                             </td>
                             <td colspan="1" style="">
-                                <button type="button" class="ok-button keypad-button" onclick="nextItem()">Next Item</button>
+                                <button type="button" class="ok-button keypad-button" onclick="nextItem()">Next Deposit</button>
                             </td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>
+                                <button type="button" class="number-button keypad-button" value=".">.</button>
+                            </td>
                             <td>
                                 <button type="button" class="number-button keypad-button" value="0">0</button>
                             </td>
 							<td></td>
 							<td colspan="1" style="">
-                                <button type="button" class="ok-button keypad-button">Done</button>
+                                <button type="button" class="ok-button keypad-button" onclick="done()">Done</button>
                             </td>
                         </tr>
                     </table>
@@ -263,9 +328,16 @@
 	<!-- built from jQuery UI dialog example source -->
 	<div id="dialog-message" title="Warning">
 	  <p>
-		No <b>deposit amount</b> and/or <b>deposit type</b> given.
+		Invalid <b>deposit amount</b> and/or <b>deposit type</b>.
 	  </p>
 	</div>
+	
+	
+	<!-- built from jQuery UI dialog example source -->
+	<div id="dialog-confirm" title="Empty the recycle bin?">
+	  <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>The format for your deposit is incorrect. Continue without this depositing item?</p>
+	</div>
+	 
 </body>
 
 <script>
@@ -291,7 +363,7 @@
 
 		$('.ok-button').click(function () {
 			//call affirmative action
-
+			
 		});
 	});
 </script>
